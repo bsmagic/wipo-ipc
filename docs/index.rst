@@ -17,8 +17,9 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-
    ipc
+   tools
+   description
 
 Indices and tables
 ==================
