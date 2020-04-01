@@ -6,12 +6,19 @@
 Welcome to wipo-ipc's documentation!
 ====================================
 
-.. automodule:: wipo_ipc.ipc
-   :members:
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+
+Contents
+--------
+
+.. toctree::
+   :maxdepth: 2
+
+
+   ipc
 
 Indices and tables
 ==================
