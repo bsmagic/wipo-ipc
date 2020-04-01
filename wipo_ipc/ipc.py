@@ -13,36 +13,68 @@ with open(ipc_path, "r") as file_data:
             continue
 
 
-def get_pure_group(ipc):
-    return ipc[0:8] + '000000'
-
-
-def query_description(ipc):
-    return ipc_description_lookup[ipc]
-
-
-def convert_to_human(ipc):
+def get_pure_group(ipc_code: str) -> str:
     """
-    ex: A63B0055000000 --> A63B 55/00
-        A61F0005580000 --> A61F 5/58
+    Args:
+        ipc_code: string representation of a full IPC code
+
+
+    Returns:
+        str: string representation of the group of the input ipc code
+
+    Example:
+        >>> get_pure_group("A61F0005580000")
+        A61F0005000000
     """
-    if len(ipc) <= 4:
-        return ipc
+    return ipc_code[0:8] + '000000'
+
+
+def query_description(ipc_code: str) -> str:
+    """
+    Args:
+        ipc_code: string representation of a IPC code
+
+    Returns:
+        str: description of the IPC code
+
+    Examples:
+        >>> query_description("A")
+        "HUMAN NECESSITIES"
+        >>> query_description("A23B0009320000")
+        "Apparatus for preserving using liquids"
+    """
+    return ipc_description_lookup[ipc_code]
+
+
+def convert_to_human(ipc_code: str) -> str:
+    """
+    Args:
+        ipc_code: string representation of a IPC code in official form
+
+    Returns:
+        str: string representation of the input IPC code in human-friendly form
+
+    Example:
+        >>> convert_to_human("A61F0005580000")
+        "A61F 5/58"
+    """
+    if len(ipc_code) <= 4:
+        return ipc_code
     output = ""
-    output += ipc[0:4]
+    output += ipc_code[0:4]
     output += ' '
     i = 4
-    for char in ipc[4:8]:
+    for char in ipc_code[4:8]:
         if char != '0':
-            output += ipc[i:8]
+            output += ipc_code[i:8]
             break
         i += 1
     output += '/'
-    if ipc[8] == '0':
-        output += ipc[8:10]
+    if ipc_code[8] == '0':
+        output += ipc_code[8:10]
     else:
         i = 8
-        for char in ipc[8:]:
+        for char in ipc_code[8:]:
             if char != '0':
                 output += char
             else:
@@ -55,10 +87,18 @@ def convert_to_human(ipc):
     return output
 
 
-def convert_to_official(ipc):
+def convert_to_official(ipc: str) -> str:
     """
-    ex: A63B 55/00 --> A63B0055000000
-        A61F 5/58 --> A61F0005580000
+    Args:
+        ipc_code: string representation of a IPC code in human-friendly form
+
+    Returns:
+        str: string representation of the input IPC code in official form
+
+    Example:
+
+        >>> convert_to_official("A61F 5/58")
+        "A61F0005580000"
     """
 
     if len(ipc) <= 4:
@@ -90,6 +130,10 @@ class Description:
 
 
 class Ipc:
+    """
+    Main class that represents a IPC code
+    """
+
     def __init__(self, code):
         if code not in ipc_description_lookup:
             raise ValueError
