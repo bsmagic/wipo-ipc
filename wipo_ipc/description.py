@@ -1,5 +1,6 @@
 import csv
 import os
+from collections import namedtuple
 
 ipc_path = os.path.join(os.path.dirname(__file__), "data/all_ipc.csv")
 
@@ -12,14 +13,8 @@ with open(ipc_path, "r") as file_data:
         except IndexError:
             continue
 
-
-class Description:
-    def __init__(self, section, classe, subclass, group, subgroup):
-        self.section = section
-        self.classe = classe
-        self.subclass = subclass
-        self.group = group
-        self.subgroup = subgroup
+Description = namedtuple(
+    'Description', 'section classe subclass group subgroup')
 
 
 def query_description(ipc_code: str) -> str:

@@ -1,5 +1,6 @@
 [![PyPI version shields.io](https://img.shields.io/pypi/v/wipo-ipc.svg)](https://pypi.org/project/wipo-ipc/)
 [![PyPI license](https://img.shields.io/pypi/l/wipo-ipc.svg)](https://pypi.org/project/wipo-ipc/)
+[![Documentation Status](https://readthedocs.org/projects/wipo-ipc/badge/?version=latest)](http://wipo-ipc.readthedocs.io/?badge=latest)
 
 # WIPO-IPC
 
