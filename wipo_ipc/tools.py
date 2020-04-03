@@ -12,30 +12,29 @@ def convert_to_human(ipc_code: str) -> str:
     """
     if len(ipc_code) <= 4:
         return ipc_code
-    output = ""
-    output += ipc_code[0:4]
-    output += ' '
-    i = 4
-    for char in ipc_code[4:8]:
+
+    output = ipc_code[0:4] + ' '
+
+    group = ipc_code[4:8]
+    for i, char in enumerate(group):
         if char != '0':
-            output += ipc_code[i:8]
+            output += group[i:] + '/'
             break
-        i += 1
-    output += '/'
-    if ipc_code[8] == '0':
-        output += ipc_code[8:10]
+
+    subgroup = ipc_code[8:]
+    # if subgroup started with zero -> subgroup is 0X where 0<=X<=9
+    if subgroup[0] == '0':
+        output += subgroup[0:2]
     else:
-        i = 8
-        for char in ipc_code[8:]:
+        for i, char in enumerate(subgroup):
             if char != '0':
                 output += char
             else:
-                if i == 9:
+                if i == 1:
                     output += char
-                    break
+                    return output
                 else:
-                    break
-            i += 1
+                    return output
     return output
 
 
@@ -68,6 +67,7 @@ def convert_to_official(ipc: str) -> str:
     str_subgroup += "0" * (6 - len(subgroup))
 
     return ready + str_group + str_subgroup
+
 
 def get_pure_group(ipc_code: str) -> str:
     """
