@@ -14,6 +14,21 @@ A library to work with the International Patent Classification(IPC) from the Wor
 pip install wipo-ipc
 ```
 
+### Basic Usage
+
+```python
+>>> from wipo_ipc import Ipc
+
+>>> my_ipc = Ipc("A23B0009320000")
+
+>>> my_ipc.classe
+'A23'
+>>> my_ipc.description
+Description(section='HUMAN NECESSITIES', classe='FOODS OR FOODSTUFFS; THEIR TREATMENT, NOT COVERED BY OTHER CLASSES', subclass='PRESERVING, e.g. BY CANNING, MEAT, FISH, EGGS, FRUIT, VEGETABLES, EDIBLE SEEDS; CHEMICAL RIPENING OF FRUIT OR VEGETABLES; THE PRESERVED, RIPENED, OR CANNED PRODUCTS', group='Preservation of edible seeds, e.g. cereals', subgroup='Apparatus for preserving using liquids')
+>>> my_ipc.description.classe
+'FOODS OR FOODSTUFFS; THEIR TREATMENT, NOT COVERED BY OTHER CLASSES'
+```
+
 ## Contributing
 
 ```
