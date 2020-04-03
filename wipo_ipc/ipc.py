@@ -1,5 +1,13 @@
-from .description import Description, query_description, ipc_description_lookup
+from .description import query_description, ipc_description_lookup
 from .tools import convert_to_human, get_pure_group
+from collections import namedtuple
+
+
+ipc_part = namedtuple("ipc_part", "code description")
+
+
+def gen_ipc_part(code):
+    return ipc_part(code, query_description(code))
 
 
 class Ipc:
@@ -18,7 +26,6 @@ class Ipc:
         self.subclass = self.get_subclass()
         self.group = self.get_group()
         self.subgroup = self.get_subgroup()
-        self.description = self.get_descriptions()
 
     def __repr__(self):
         return self.code
@@ -27,37 +34,33 @@ class Ipc:
         return self.code == value
 
     def get_section(self):
-        return self.code[0]
+        code = self.code[0]
+        return gen_ipc_part(code)
 
     def get_classe(self):
         if len(self.code) >= 3:
-            return self.code[0:3]
+            code = self.code[0:3]
+            return gen_ipc_part(code)
         else:
             return None
 
     def get_subclass(self):
         if len(self.code) >= 4:
-            return self.code[0:4]
+            code = self.code[0:4]
+            return gen_ipc_part(code)
         else:
             return None
 
     def get_group(self):
         if len(self.code) == 14:
-            return get_pure_group(self.code)
+            code = get_pure_group(self.code)
+            return gen_ipc_part(code)
         else:
             return None
 
     def get_subgroup(self):
         if len(self.code) == 14 and self.code[-6:] != "000000":
-            return self.code
+            code = self.code
+            return gen_ipc_part(code)
         else:
             return None
-
-    def get_descriptions(self):
-        section = query_description(self.section)
-        classe = query_description(self.classe)
-        subclass = query_description(self.subclass)
-        group = query_description(self.group)
-        subgroup = query_description(self.subgroup)
-
-        return Description(section, classe, subclass, group, subgroup)

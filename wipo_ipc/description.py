@@ -13,9 +13,6 @@ with open(ipc_path, "r") as file_data:
         except IndexError:
             continue
 
-Description = namedtuple(
-    'Description', 'section classe subclass group subgroup')
-
 
 def query_description(ipc_code: str) -> str:
     """

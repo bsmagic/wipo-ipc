@@ -20,13 +20,13 @@ pip install wipo-ipc
 >>> from wipo_ipc import Ipc
 
 >>> my_ipc = Ipc("A23B0009320000")
-
+>>> my_ipc.code
+'A23B0009320000'
 >>> my_ipc.classe
-'A23'
->>> my_ipc.description
-Description(section='HUMAN NECESSITIES', classe='FOODS OR FOODSTUFFS; THEIR TREATMENT, NOT COVERED BY OTHER CLASSES', subclass='PRESERVING, e.g. BY CANNING, MEAT, FISH, EGGS, FRUIT, VEGETABLES, EDIBLE SEEDS; CHEMICAL RIPENING OF FRUIT OR VEGETABLES; THE PRESERVED, RIPENED, OR CANNED PRODUCTS', group='Preservation of edible seeds, e.g. cereals', subgroup='Apparatus for preserving using liquids')
->>> my_ipc.description.classe
-'FOODS OR FOODSTUFFS; THEIR TREATMENT, NOT COVERED BY OTHER CLASSES'
+ipc_part(code='A23', description='FOODS OR FOODSTUFFS; THEIR TREATMENT, NOT COVERED BY OTHER CLASSES')
+>>> my_ipc.human_code
+'A23B 9/32'
+
 ```
 
 ## Contributing
@@ -39,10 +39,16 @@ source .venv/bin/activate
 pip install -r requirements-dev.txt
 ```
 
-## Running the tests
+## Test Coverage
 
+Run the tests
 ```
-pytest tests/
+coverage run --omit ".venv/*" -m pytest tests/
+```
+
+Show the report
+```
+coverage report -m
 ```
 
 ## Versioning

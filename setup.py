@@ -5,10 +5,10 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="wipo-ipc",
-    version="0.0.1",
+    version="1.0.0",
     author="Mateus Rangel",
     author_email="mateusmrangel@hotmail.com",
-    description= "A library to work with the International Patent Classification(IPC) from the World Intellectual Property Organization(WIPO)",
+    description="A library to work with the International Patent Classification(IPC) from the World Intellectual Property Organization(WIPO)",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/mateusrangel/wipo-ipc",
