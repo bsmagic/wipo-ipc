@@ -6,6 +6,8 @@
 
 A library to work with the International Patent Classification(IPC) from the World Intellectual Property Organization(WIPO)
 
+Modified to adapt to Chinese/Asian environment. # 2021-04-13 09|47|38
+
 ## Getting Started
 
 ### Installing
