@@ -4,7 +4,7 @@ from collections import namedtuple
 
 ipc_path = os.path.join(os.path.dirname(__file__), "data/all_ipc.csv")
 
-with open(ipc_path, "r") as file_data:
+with open(ipc_path, "r", encoding='UTF-8') as file_data:
     reader = csv.reader(file_data, dialect='excel-tab')
     ipc_description_lookup = {}
     for row in reader:
